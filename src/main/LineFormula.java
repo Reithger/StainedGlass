@@ -1,11 +1,16 @@
+package main;
 
 public class LineFormula {
 
+//---  Instance Variables   -------------------------------------------------------------------
+	
 	private double m;
 	private double b;
 
 	private double minX;
 	private double maxX;
+	
+//---  Constructors   -------------------------------------------------------------------------
 	
 	public LineFormula(double mIn, double bIn, double inMinX, double inMaxX) {
 		m = mIn;
@@ -14,22 +19,7 @@ public class LineFormula {
 		maxX = inMaxX;
 	}
 	
-	public double getSlopeM() {
-		return m;
-	}
-	
-	public double getSlopeB() {
-		return b;
-	}
-	
-	public double getMinX() {
-		return minX;
-	}
-	
-	public double getMaxX() {
-		return maxX;
-	}
-	
+//---  Operations   ---------------------------------------------------------------------------
 	
 	//y = mx+b, 0 = m * x + -1 * y + b
 	//              a * x +  b * y + c
@@ -69,4 +59,27 @@ public class LineFormula {
 		return true;
 	}
 	
+	public double calculateYCoord(double xIn) {
+		return m * xIn + b;
+	}
+	
+//---  Getter Methods   -----------------------------------------------------------------------
+	
+	public double getSlopeM() {
+		return m;
+	}
+	
+	public double getSlopeB() {
+		return b;
+	}
+	
+	public double getMinX() {
+		return minX;
+	}
+	
+	public double getMaxX() {
+		return maxX;
+	}
+	
+
 }

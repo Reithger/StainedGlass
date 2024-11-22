@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
@@ -99,7 +100,7 @@ public class PaneRegion implements Comparable<PaneRegion>, Comparator<PaneRegion
 		
 		Random rand = new Random();
 		
-		if(rand.nextDouble() < .3) {
+		if(rand.nextDouble() < .8) {
 			out.addAll(centerPointPolygon());
 		}
 		else {
@@ -208,7 +209,7 @@ public class PaneRegion implements Comparable<PaneRegion>, Comparator<PaneRegion
 		//System.out.println("Center: " + center.getX() + " " + center.getY());
 		//System.out.println("Diameter: " + radius);
 		
-		int numSides = 8 + rand.nextInt(6); //3 * getNumVertices() * (1 + rand.nextInt(2));//getNumVertices() + 1 + (1 + rand.nextInt(3));
+		int numSides = 16 + rand.nextInt(6); //3 * getNumVertices() * (1 + rand.nextInt(2));//getNumVertices() + 1 + (1 + rand.nextInt(3));
 		
 		PaneRegion shape = generatePerfectPolygon(center, numSides, radius);
 		
@@ -260,8 +261,8 @@ public class PaneRegion implements Comparable<PaneRegion>, Comparator<PaneRegion
 			
 			negativeSpace.addPoint(getVertex(i-1));
 			
-			//out.add(negativeSpace);
-			out.addAll(negativeSpace.centerPointSpiderweb());//.centerPointSpiderweb());
+			out.add(negativeSpace);
+			//out.addAll(negativeSpace.centerPointSpiderweb());//.centerPointSpiderweb());
 		}
 		
 		
@@ -362,7 +363,7 @@ public class PaneRegion implements Comparable<PaneRegion>, Comparator<PaneRegion
 		}
 		
 		Point compare = new Point(x, y);
-		LineFormula ray = compare.deriveLineFormula(new Point(x + 50, y));
+		LineFormula ray = compare.deriveLineFormula(new Point(x + 5000, y));
 		
 		int intersections = 0;
 		
@@ -385,7 +386,7 @@ public class PaneRegion implements Comparable<PaneRegion>, Comparator<PaneRegion
 	
 	public boolean containsRegion(PaneRegion region) {
 		for(int i = 0; i < region.getNumVertices(); i++) {
-			if(containsPoint(region.getVertex(i))) {
+			if(!containsPoint(region.getVertex(i))) {
 				return false;
 			}
 		}

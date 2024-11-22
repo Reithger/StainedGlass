@@ -1,21 +1,39 @@
+package main;
+
+/**
+ * 
+ * Simple class that represents an arbitrary point in 2D cartesian space, representing
+ * the x and y coordinates as double values (these are often reduced to integer representations
+ * by other classes but we want the specificity here) though the toString() and equals()
+ * functions use integer representations to simplify deciding equality given the usage of
+ * objects of this class.
+ * 
+ * This class also does some logical operations such as measuring the distance between the
+ * Point object and another provided Point object and generating a LineFormula object given
+ * another Point object representing the y=mx+b formula derived between those two points.
+ * 
+ * There is also a method to calculate the position of a point a % of the way between this
+ * Point object and another one that has been provided.
+ * 
+ * @author Reithger
+ *
+ */
 
 public class Point implements Comparable<Point>{
 
+//---  Instance Variables   -------------------------------------------------------------------
+	
 	private double x;
 	private double y;
+	
+//---  Constructors   -------------------------------------------------------------------------
 	
 	public Point(double inX, double inY) {
 		x = inX;
 		y = inY;
 	}
-	
-	public double getX() {
-		return x;
-	}
-	
-	public double getY() {
-		return y;
-	}
+
+//---  Operations   ---------------------------------------------------------------------------
 	
 	public double measureDistance(Point other) {
 		double difX = Math.abs(x - other.getX());
@@ -52,6 +70,18 @@ public class Point implements Comparable<Point>{
 		double b = getY() - m * getX();
 		return new LineFormula(m, b, getX() < other.getX() ? getX() : other.getX(), getX() > other.getX() ? getX() : other.getX());
 	}
+
+//---  Getter Methods   -----------------------------------------------------------------------
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+
+//---  Mechanics   ----------------------------------------------------------------------------
 
 	@Override
 	public int compareTo(Point o) {
